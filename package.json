@@ -1,0 +1,9 @@
+{
+  "name": "d3-course",
+  "dependencies": {
+    "http-server": "^0.9.0"
+  },
+  "scripts": {
+    "start": "http-server . -o -c-1"
+  }
+}

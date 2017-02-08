@@ -96,6 +96,30 @@ draw([3, 2, 1])
 draw([3, 2, 1, 4])
 draw([5, 3, 2, 1, 4])
 
+// and if order matters...
+function draw(data) {
+  var paragraphs = d3.select('#dest').selectAll("p").data(data, d => d).order();
+  paragraphs.enter()
+    .append("p")
+      .text(d => 'paragraph ' + d)
+      .style('font-size', '0px')
+    .transition().duration(1000)
+      .style('font-size', d => (d * 10) + 'px');
+  paragraphs
+      .text(d => 'paragraph ' + d)
+    .transition().duration(1000)
+      .style('font-size', d => (d * 10) + 'px')
+  paragraphs.exit()
+    .transition().duration(1000)
+      .style('font-size', '0px')
+      .remove();
+}
+draw([1, 2, 3])
+draw([3, 2, 1])
+draw([3, 2, 4, 1])
+draw([5, 3, 2, 4, 1])
+draw([5, 3, 2, 1, 4])
+
 // can do same with CSS transitions, but D3 makes it easier to be data-driven
 d3.selectAll('p').transition().ease(d3.easeBounce).duration(1000).style('font-size', '0px')
 
